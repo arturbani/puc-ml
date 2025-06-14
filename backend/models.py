@@ -4,6 +4,8 @@ import joblib
 import os
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.impute import SimpleImputer
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
 
 # Valid model IDs
 VALID_MODELS = ['knn_model', 'model-b', 'model-c']
@@ -38,22 +40,15 @@ def preprocess_data(df, model_id):
         if 'Dia' not in df.columns:
             df['Dia'] = df['Data da Coleta'].dt.day
 
-    # Ensure required features are present
     required_features = ['Produto', 'Bandeira', 'Regiao - Sigla', 'Estado - Sigla', 'Ano', 'Mes', 'Dia', 'Valor de Compra']
-    print('aaaaa4', df)
-    missing_features = [feat for feat in required_features if feat not in df.columns]
-    if missing_features:
-        raise ValueError(f"Missing required features: {', '.join(missing_features)}")
-    
-    # Prepare features
-    print('aaaaa4', df)
+
     X = df[required_features].copy()
     
     # Encode categorical features
     le = LabelEncoder()
 
     for col in ['Produto', 'Bandeira', 'Regiao - Sigla', 'Estado - Sigla']:
-        X[col] = le.fit_transform(X[col].astype(str))
+        X[col] = le.fit_transform(X[col].astype(str)) 
     
     # Impute missing values
     imputer = SimpleImputer(strategy='mean')
@@ -94,7 +89,7 @@ def process_data_with_model(df, model_id):
         # Create a results DataFrame including original data and predictions
         results_df = df.copy()
         results_df['Predicted_Valor_de_Venda'] = predictions
-        
+        print([results_df['Predicted_Valor_de_Venda']])
         return {
             "model_id": model_id,
             "success": True,

@@ -183,15 +183,22 @@ const AnalysisForm: React.FC = () => {
               Análise feita com sucesso!
             </h3>
             <p className="text-sm text-green-700">
-              Modelo: {modelOptions.find((m) => m.id === selectedModel)?.label}
+              Modelo:{' '}
+              {
+                modelOptions.find((m) => m.id === analysisResults.model_id)
+                  ?.label
+              }
               <br />
               Arquivo: {selectedFile?.name}
               <br />
-              MAE: {analysisResults.mae || 'N/A'}
+              Média: {analysisResults.predicted_values.mean || 'N/A'}:
               <br />
-              MSE: {analysisResults.mse || 'N/A'}
+              Mediana: {analysisResults.predicted_values.median || 'N/A'}:
               <br />
-              R²: {analysisResults.r2 || 'N/A'}
+              Valor mínimo: {analysisResults.predicted_values.min || 'N/A'}:
+              <br />
+              Valor máximo: {analysisResults.predicted_values.max || 'N/A'}:
+              <br />
             </p>
           </div>
         )}

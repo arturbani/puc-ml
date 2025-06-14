@@ -38,16 +38,12 @@ async def process_data_endpoint(
     # Read and validate CSV file
     try:
         contents = await file.read()
-        chunk_iter = pd.read_csv(
+        df = pd.read_csv(
           io.StringIO(contents.decode('utf-8')),
-          delimiter=';',
           on_bad_lines='skip',
           engine='python',
-          chunksize=100000
         )
 
-        for chunk in chunk_iter:
-          df = pd.concat([df, chunk])
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Invalid CSV file: {str(e)}")
     
