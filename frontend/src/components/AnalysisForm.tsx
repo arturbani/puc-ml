@@ -14,10 +14,13 @@ const sendAnalysisRequest = async (model_id: string, file: File) => {
   formData.append('model_id', model_id);
   formData.append('file', file);
 
-  const response = await fetch(`${import.meta.env.VITE_API_URL}/process-data`, {
-    method: 'POST',
-    body: formData,
-  });
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/process-data/`,
+    {
+      method: 'POST',
+      body: formData,
+    },
+  );
 
   if (!response.ok) {
     throw new Error(`API error: ${response.status}`);
