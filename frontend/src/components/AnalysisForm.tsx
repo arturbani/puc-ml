@@ -14,7 +14,7 @@ const sendAnalysisRequest = async (model_id: string, file: File) => {
   formData.append('model_id', model_id);
   formData.append('file', file);
 
-  const response = await fetch('http://localhost:8000/process-data', {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/process-data`, {
     method: 'POST',
     body: formData,
   });
