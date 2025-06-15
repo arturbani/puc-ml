@@ -8,7 +8,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 
 # Valid model IDs
-VALID_MODELS = ['knn_model', 'model-b', 'model-c']
+VALID_MODELS = ['knn_model', 'lr_model', 'dt_model']
 
 # Path to pre-trained models
 MODELS_DIR = os.path.join(os.path.dirname(__file__), 'trained_models')

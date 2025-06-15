@@ -4,8 +4,8 @@ import { Loader2, Upload } from 'lucide-react';
 
 const modelOptions = [
   { id: 'knn_model', label: 'KNN' },
-  { id: 'model-b', label: 'Árvore de Decisão' },
-  { id: 'model-c', label: 'Regressão Linear' },
+  { id: 'dt_model', label: 'Árvore de Decisão' },
+  { id: 'lr_model', label: 'Regressão Linear' },
 ];
 
 // Real API function to replace the mock
@@ -191,13 +191,13 @@ const AnalysisForm: React.FC = () => {
               <br />
               Arquivo: {selectedFile?.name}
               <br />
-              Média: {analysisResults.predicted_values.mean || 'N/A'}:
+              Média: {analysisResults.predicted_values.mean || 'N/A'}
               <br />
-              Mediana: {analysisResults.predicted_values.median || 'N/A'}:
+              Mediana: {analysisResults.predicted_values.median || 'N/A'}
               <br />
-              Valor mínimo: {analysisResults.predicted_values.min || 'N/A'}:
+              Valor mínimo: {analysisResults.predicted_values.min || 'N/A'}
               <br />
-              Valor máximo: {analysisResults.predicted_values.max || 'N/A'}:
+              Valor máximo: {analysisResults.predicted_values.max || 'N/A'}
               <br />
             </p>
           </div>
